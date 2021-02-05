@@ -22,8 +22,9 @@ const Profile = (props) => (
     <Helmet>
       <title>My Profile - Crate</title>
     </Helmet>
-
-    {/* Top title bar */}
+    
+    {/* Top title bar */ } {/* We can recreate dmin nav bar to have one place for a user to navigate among
+    pages Account/History/Subscriptions  */}
     <Grid style={{ backgroundColor: grey }}>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
         <H3 font="secondary">My profile</H3>
@@ -35,16 +36,21 @@ const Profile = (props) => (
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
 
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
-
+        {/* Link to the subscritions */}
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
         </Link>
-
+        {/* Second Link to log out */}
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>
     </Grid>
   </div>
 )
+
+// we need to create 3 components:
+//  AccountInfo.js - this is where user see their personal info
+//  EditAccount.js - this is a fomr user need to fill out and save to update their personal info
+//  History.js - this is where user can see the history of delivered packages with items that were kept
 
 // Component Properties
 Profile.propTypes = {
