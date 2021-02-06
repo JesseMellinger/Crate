@@ -68,6 +68,14 @@ class EditUserInfo extends Component {
             </Link>
           </GridCell>
         </Grid>
+
+        <Grid alignCenter={true} style={{ padding: '1em' }}>
+          <GridCell>
+            <H4 font="secondary" style={{ marginBottom: '1em', textAlign: 'center' }}>
+              Edit My Account
+            </H4>
+          </GridCell>
+        </Grid>      
       </div>
     )
   }
