@@ -37,4 +37,24 @@ class EditUserInfo extends Component {
     }
   }
 
+  onChange = (event) => {
+    let user = this.state.user
+    user[event.target.name] = event.target.value
+
+    this.setState({
+      user
+    })
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+
+    this.setState({
+      isLoading: true
+    })
+  }
 }
+
+  export default withRouter(connect(null, {
+
+  })(EditUserInfo))
