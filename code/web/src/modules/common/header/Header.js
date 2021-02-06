@@ -54,6 +54,7 @@ const Header = (props) => {
             props.user.isAuthenticated
               ?
               <Menu>
+                {/*  Add a menu item for User similar to Admin button to keep menus unified */}
                 { props.user.details.role === 'ADMIN' && <MenuItem to={admin.dashboard.path} section="admin">Admin</MenuItem> }
 
                 <MenuItem to={crate.list.path}>Crates</MenuItem>

@@ -23,8 +23,8 @@ const Profile = (props) => (
       <title>My Profile - Crate</title>
     </Helmet>
     
-    {/* Top title bar */ } {/* We can recreate dmin nav bar to have one place for a user to navigate among
-    pages Account/History/Subscriptions  */}
+    {/* Top title bar */ } {/* We can recreate admin nav bar to have one place for user to navigate among
+    pages Account/History  */}
     <Grid style={{ backgroundColor: grey }}>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
         <H3 font="secondary">My profile</H3>

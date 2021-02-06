@@ -225,6 +225,9 @@ class CreateOrEdit extends Component {
         {/* Page Content */}
         <div>
           {/* Top actions bar */}
+
+           {/* This is a back arrow button that can be used on user edit form page to 
+           to return back to the My Account info page */}
           <Grid alignCenter={true} style={{ padding: '1em' }}>
             <GridCell style={{ textAlign: 'left' }}>
               <Link to={admin.productList.path}>
@@ -244,6 +247,8 @@ class CreateOrEdit extends Component {
               <form onSubmit={this.onSubmit}>
                 <div style={{ width: '25em', margin: '0 auto' }}>
                   {/* Name */}
+
+                   {/* Inputs can be reused for User edit form to fill Name/email */}
                   <Input
                     type="text"
                     fullWidth={true}
@@ -256,6 +261,9 @@ class CreateOrEdit extends Component {
                   />
 
                   {/* Description */}
+                  {/* TextArea component can be reused for User edit form to fill shipping address 
+                  description  */}
+
                   <Textarea
                     fullWidth={true}
                     placeholder="Description"
@@ -323,6 +331,8 @@ class CreateOrEdit extends Component {
                 </div>
 
                 {/* Form submit */}
+
+                {/* Reuse the save buttong for the User form in order to submit the form and save user information */}
                 <div style={{ marginTop: '2em', textAlign: 'center' }}>
                   <Button type="submit" theme="secondary" disabled={this.state.isLoading}>
                     <Icon size={1.2} style={{ color: white }}>check</Icon> Save

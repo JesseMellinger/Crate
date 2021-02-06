@@ -14,6 +14,7 @@ import MenuItem from '../../common/header/MenuItem'
 const AdminMenu = () => (
   <Grid style={{ backgroundColor: grey }}>
     <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+      {/* Use this nav bar for creating User's menu with My Account and History  */}
       <Menu>
         <MenuItem to={admin.dashboard.path} type="primary" style={{ color: black }}>Dashboard</MenuItem>
 
