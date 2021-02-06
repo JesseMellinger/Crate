@@ -26,5 +26,11 @@ export default {
     path: '/user/subscriptions',
     component: Subscriptions,
     auth: true
-  }
+  },
+
+  edit: {
+    path: '/user/profile/edit',
+    component: EditUserInfo,
+    auth: true
+  },
 }
