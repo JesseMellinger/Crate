@@ -58,7 +58,7 @@ class EditUserInfo extends Component {
     return (
       <div>
         <Helmet>
-         <title>My Profile - Crate</title>
+         <title>Edit My Account - Crate</title>
         </Helmet>
         {/* Page Content */}
         <Grid alignCenter={true} style={{ padding: '1em' }}>
