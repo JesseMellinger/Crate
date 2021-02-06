@@ -55,6 +55,7 @@ const Header = (props) => {
               ?
               <Menu>
                 { props.user.details.role === 'ADMIN' && <MenuItem to={admin.dashboard.path} section="admin">Admin</MenuItem> }
+                { props.user.details.role === 'USER' && <MenuItem to={user.account.path} section="user">User<MenuItem/>}
 
                 <MenuItem to={crate.list.path}>Crates</MenuItem>
 
