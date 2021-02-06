@@ -1,7 +1,14 @@
-// Imports
+/*
+  Imports
+  Object type for developer-defined types
+*/
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
-// User type
+/*
+  User type
+  Object type with fields corresponding to model
+  Built-in scalar types used for fields
+*/
 const UserType = new GraphQLObjectType({
   name: 'user',
   description: 'User type',
@@ -17,7 +24,12 @@ const UserType = new GraphQLObjectType({
   })
 })
 
-// User Login type
+/*
+  User Login type
+  Object type with user and token fields
+  User type used on user field
+  String scalar type on token field
+*/
 const UserLoginType = new GraphQLObjectType({
   name: 'userAuth',
   description: 'User Authentication Type',
@@ -28,7 +40,10 @@ const UserLoginType = new GraphQLObjectType({
   })
 })
 
-// User Gender type
+/*
+  User Gender type
+  Object type with two fields
+*/
 const UserGenderType = new GraphQLObjectType({
   name: 'userGender',
   description: 'User Gender Type',
@@ -39,4 +54,5 @@ const UserGenderType = new GraphQLObjectType({
   })
 })
 
+// Export objects for use in other file
 export { UserType, UserLoginType, UserGenderType }

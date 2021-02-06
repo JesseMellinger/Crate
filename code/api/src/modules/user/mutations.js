@@ -1,11 +1,20 @@
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 
-// App Imports
+/*
+  App Imports
+  Import user type from types file in same directory
+  Import resolver functions from resolvers file in same directory
+*/
 import { UserType } from './types'
 import { create, remove } from './resolvers'
 
-// Create
+/*
+  Create
+  Mutation type part of schema
+  Root field type as user
+  Arguments provided to resolver function
+*/
 export const userSignup = {
   type: UserType,
   args: {
@@ -27,7 +36,12 @@ export const userSignup = {
   resolve: create
 }
 
-// Remove
+/*
+  Remove
+  Mutation operation
+  User type for root field
+  ID passed as argument to resolver function (remove)
+*/
 export const userRemove = {
   type: UserType,
   args: {

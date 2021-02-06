@@ -7,7 +7,15 @@ import serverConfig from '../../config/server'
 import params from '../../config/params'
 import models from '../../setup/models'
 
-// Create
+/*
+  Create
+  Resolver function with two parameters of four inputs
+  First parameter references result of previous resolver level
+  Get user from database by email if exists
+  If user not found with email, create hash of password & create user with name,
+  email, and hashed password
+  If user already exists with email error message is thrown
+*/
 export async function create(parentValue, { name, email, password }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
@@ -27,6 +35,14 @@ export async function create(parentValue, { name, email, password }) {
   }
 }
 
+/*
+  Resolver function called from query
+  Find user in database by email if exists
+  If user record not found, erro thrown
+  Otherwise get user details and confirm passwords match
+  If passwords don't match throw error
+  Else create token object and return user details and toke
+*/
 export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
 
@@ -58,22 +74,34 @@ export async function login(parentValue, { email, password }) {
   }
 }
 
-// Get by ID
+/*
+  Get by ID
+  Get user record by id provided as argument
+*/
 export async function getById(parentValue, { id }) {
   return await models.User.findOne({ where: { id } })
 }
 
-// Get all
+/*
+  Get all
+  Retrieve all user records
+*/
 export async function getAll() {
   return await models.User.findAll()
 }
 
-// Delete
+/*
+  Delete
+  Remove user record from table by referencing ID
+*/
 export async function remove(parentValue, { id }) {
   return await models.User.destroy({ where: { id } })
 }
 
-// User genders
+/*
+  User genders
+  Get values from json supplied in params
+*/
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
