@@ -53,7 +53,25 @@ class EditUserInfo extends Component {
       isLoading: true
     })
   }
-}
+
+  render() {
+    return (
+      <div>
+        <Helmet>
+         <title>My Profile - Crate</title>
+        </Helmet>
+        {/* Page Content */}
+        <Grid alignCenter={true} style={{ padding: '1em' }}>
+          <GridCell style={{ textAlign: 'left' }}>
+            <Link to={userRoutes.profile.path}>
+              <Button><Icon size={1.2}>arrow_back</Icon> Back</Button>
+            </Link>
+          </GridCell>
+        </Grid>
+      </div>
+    )
+  }
+} 
 
   export default withRouter(connect(null, {
 
