@@ -4,7 +4,7 @@ import Signup from "../../modules/user/Signup";
 import Profile from "../../modules/user/Profile";
 import Subscriptions from "../../modules/user/Subscriptions";
 import EditUserInfo from "../../modules/user/EditUserInfo";
-import UserAcount from "../../modules/user/UserAccount";
+import UserAccount from "../../modules/user/UserAccount";
 
 // User routes
 export default {
