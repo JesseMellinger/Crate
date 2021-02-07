@@ -30,7 +30,7 @@ export default {
   },
 
   edit: {
-    path: '/user/profile/edit',
+    path: '/user/edit',
     component: EditUserInfo,
     auth: true
   },
