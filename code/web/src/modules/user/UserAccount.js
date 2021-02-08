@@ -29,14 +29,29 @@ const UserAccount = () => {
           alignItems: "center",
           height: "35vh",
           width: "50vw",
+          border: "solid 1px white",
+          padding: "5em",
+          boxShadow: "2.5px 2.5px 2px #7A7979",
         }}
       >
         {/* SEO */}
         <Helmet>
           <title>My Account - Crate</title>
         </Helmet>
-        <div>
-          <img src="https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg" />
+        <div
+          style={{
+            height: "35vh",
+            width: "50vw",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src="https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg"
+            height="100%"
+          />
         </div>
         <div
           style={{
@@ -47,8 +62,8 @@ const UserAccount = () => {
           }}
         >
           <H3>The User</H3>
-          <p>sampleemail@gmail.com</p>
-          <p>1234 Sample St. Denver, CO 80231</p>
+          <p style={{ color: "#7A7979" }}>sampleemail@gmail.com</p>
+          <p style={{ color: "#7A7979" }}>1234 Sample St. Denver, CO 80231</p>
           <p>Please tell us about yourself!</p>
         </div>
         <div
