@@ -1,3 +1,11 @@
+/*
+
+Here we will need to import the query files for our new tables
+
+We will also neew to add the new tables to the fields section
+
+*/
+
 // Imports
 import { GraphQLObjectType } from 'graphql'
 

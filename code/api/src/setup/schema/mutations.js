@@ -1,3 +1,11 @@
+/*
+
+Here we will need to import that mutation files for our new tables
+
+We will aldo need to add the new tables as fields
+
+*/
+
 // Imports
 import { GraphQLObjectType } from 'graphql'
 
