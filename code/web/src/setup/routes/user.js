@@ -1,37 +1,44 @@
 // App Imports
-import Login from '../../modules/user/Login'
-import Signup from '../../modules/user/Signup'
-import Profile from '../../modules/user/Profile'
-import Subscriptions from '../../modules/user/Subscriptions'
-import EditUserInfo from '../../modules/user/EditUserInfo'
+import Login from "../../modules/user/Login";
+import Signup from "../../modules/user/Signup";
+import Profile from "../../modules/user/Profile";
+import Subscriptions from "../../modules/user/Subscriptions";
+import EditUserInfo from "../../modules/user/EditUserInfo";
+import UserAccount from "../../modules/user/UserAccount";
 
 // User routes
 export default {
   login: {
-    path: '/user/login',
-    component: Login
+    path: "/user/login",
+    component: Login,
   },
 
   signup: {
-    path: '/user/signup',
-    component: Signup
+    path: "/user/signup",
+    component: Signup,
   },
 
   profile: {
-    path: '/user/profile',
+    path: "/user/profile",
     component: Profile,
-    auth: true
+    auth: true,
   },
 
   subscriptions: {
-    path: '/user/subscriptions',
+    path: "/user/subscriptions",
     component: Subscriptions,
-    auth: true
+    auth: true,
   },
 
   edit: {
-    path: '/user/edit',
+    path: "/user/edit",
     component: EditUserInfo,
-    auth: true
+    auth: true,
   },
-}
+
+  account: {
+    path: "/user/account",
+    component: UserAccount,
+    auth: true,
+  },
+};
