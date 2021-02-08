@@ -1,3 +1,11 @@
+/*
+
+In this file we will want to declare the new fields which will be availible for queries.
+
+We may, or may not, need to add new types.
+
+*/
+
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 

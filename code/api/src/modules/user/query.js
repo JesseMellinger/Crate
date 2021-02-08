@@ -1,3 +1,11 @@
+/*
+
+In thie file we are going to want to setup some new queries. We will need to be able to return
+a histroy of prodcuts delivered to a user along with what they have kept. We will also need to
+return when the next delivery is coming for a user.
+
+*/
+
 // Imports
 import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
 

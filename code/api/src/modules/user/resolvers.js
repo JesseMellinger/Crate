@@ -1,3 +1,21 @@
+/*
+
+Because we are creating new muatations and queries, we will also need some new resolvers here.
+
+Here's a list of the functions I believe we'll need:
+
+  - uploadImage
+  - createBio
+  - editBio
+  - editEmail
+  - editShippingAddress
+  - editDeliveryDate
+  - getHistory
+  - getKept
+  - getNextDelivery
+
+*/
+
 // Imports
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'

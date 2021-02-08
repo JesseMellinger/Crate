@@ -1,3 +1,11 @@
+/*
+
+Along with the new migrations, we'll want to add more seed within our seeders folder.
+
+The new data will reflect the User columns we added and the two new tables
+
+*/
+
 'use strict';
 
 const bcrypt = require('bcrypt');

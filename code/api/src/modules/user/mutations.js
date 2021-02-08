@@ -1,3 +1,19 @@
+/*
+
+A lot of our track revolves around allowing users to alter their data. Because of this, we
+will definitely need to setup some new mutations here.
+
+These are following mutations we will need:
+
+  - Upload an image
+  - Create bio
+  - Edit bio
+  - Edit email
+  - Edit shipping address
+  - Edit shipping date
+
+*/
+
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 

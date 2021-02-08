@@ -1,3 +1,13 @@
+/*
+  
+We will need to run new migrations to add more columns to the Users table.
+
+We need to add availibleDate, profileURI, shippingAddress, and bio
+
+On top of this, we wil also be creating two new tables, Subcription Crates, and Crate Products
+
+*/
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
