@@ -2,10 +2,14 @@
 import { GraphQLString, GraphQLInt } from 'graphql'
 
 // App Imports
+// imports the CrateType and resolvers
 import CrateType from './types'
 import { create, remove, update } from './resolvers'
 
 // Crate create
+// Mutation to create a new Create
+// Points to the create resolver function
+// Resolver accepts two arguments name and description
 export const crateCreate = {
   type: CrateType,
   args: {
@@ -23,6 +27,9 @@ export const crateCreate = {
 }
 
 // Crate update
+// Mutation to update an existing crate
+// Points to the update resolver function
+// Resolver accepts three arguments id, name and description
 export const crateUpdate = {
   type: CrateType,
   args: {
@@ -45,6 +52,9 @@ export const crateUpdate = {
 }
 
 // Crate remove
+// Mutation to delete an existing crate
+// Points to the remove resolver function
+// Resolver rewuires the create id
 export const crateRemove = {
   type: CrateType,
   args: {

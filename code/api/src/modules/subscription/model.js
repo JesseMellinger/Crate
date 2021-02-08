@@ -1,6 +1,8 @@
 'use strict'
 
 // Subscription
+// Where the subscription model is defined
+// Exportes a Subscription
 module.exports = function(sequelize, DataTypes) {
   let Subscription = sequelize.define('subscriptions', {
     userId: {
@@ -11,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 
+  // Subscription belongs to create and user
   Subscription.associate = function(models) {
     Subscription.belongsTo(models.User)
     Subscription.belongsTo(models.Crate)

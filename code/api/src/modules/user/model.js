@@ -1,4 +1,10 @@
 'use strict'
+/* 
+  - Where the user model is defined
+  - Has association with subscriptions with a has many
+  - Using built in data types
+  - User is exported
+*/ 
 
 // User
 module.exports = function(sequelize, DataTypes) {

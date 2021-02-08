@@ -3,11 +3,16 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Get all products
+// Returns all products in the database
+// does not accept arguments
 export async function getAll() {
   return await models.Product.findAll({ order: [['id', 'DESC']] })
 }
 
 // Get product by slug
+// Returns product by the slug
+// Resolver returnes a slug argument to be given to
+// Returns error message if it does not exists or is discontinued
 export async function getBySlug(parentValue, { slug }) {
   const product = await models.Product.findOne({ where: { slug } })
 
@@ -20,6 +25,9 @@ export async function getBySlug(parentValue, { slug }) {
 }
 
 // Get product by ID
+// Returns product by its id
+// Resolver returnes a product
+// Returns error message if product does not exists or is discontinued
 export async function getById(parentValue, { productId }) {
   const product = await models.Product.findOne({ where: { id: productId } })
 
@@ -32,6 +40,7 @@ export async function getById(parentValue, { productId }) {
 }
 
 // Get related products
+// Returns array 3 of related products
 export async function getRelated(parentValue, { productId }) {
   return await models.Product.findAll({
     where: {
@@ -43,6 +52,9 @@ export async function getRelated(parentValue, { productId }) {
 }
 
 // Create product
+// Creates and returns a new create if the right authentication is provided
+// Requires 6 arguments as well as authentication
+// Returns an error message if there is an error 
 export async function create(parentValue, { name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Product.create({
@@ -59,6 +71,9 @@ export async function create(parentValue, { name, slug, description, type, gende
 }
 
 // Update product
+// Requires 7 arguments as well as authentication
+// Updates an existing product
+// Returns an error message if there is an error
 export async function update(parentValue, { id, name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     return await models.Product.update(
@@ -78,6 +93,9 @@ export async function update(parentValue, { id, name, slug, description, type, g
 }
 
 // Delete product
+// Requires 1 argument and authentication
+// Deletes an existing product if found
+// Returns an error message if there is an error
 export async function remove(parentValue, { id }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
     const product = await models.Product.findOne({where: {id}})

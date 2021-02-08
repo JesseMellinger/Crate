@@ -2,6 +2,8 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // Product type
+// ProductType for GraphQL
+// Gives all available data that can be returned
 const ProductType = new GraphQLObjectType({
   name: 'product',
   description: 'Product Type',
@@ -20,6 +22,8 @@ const ProductType = new GraphQLObjectType({
 })
 
 // User Gender type
+// GenderType for GraphQL
+// Gives all available data that can be returned
 const ProductTypesType = new GraphQLObjectType({
   name: 'productTypesType',
   description: 'User Types Type',

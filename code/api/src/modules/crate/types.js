@@ -2,6 +2,8 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // Crate type
+// CrateType to be used in graphql response
+// Gives all available data to be quarried
 const CrateType = new GraphQLObjectType({
   name: 'crate',
   description: 'Crate Type',

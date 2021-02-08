@@ -2,6 +2,8 @@
 import models from '../../setup/models'
 
 // Get subscription by ID
+// Requires one argument id
+// Returns a subscription type including the user and crate
 export async function get(parentValue, { id }) {
   return await models.Subscription.findOne({
     where: { id },
@@ -13,6 +15,7 @@ export async function get(parentValue, { id }) {
 }
 
 // Get subscription by user
+// Returns a subscription type by user id
 export async function getByUser(parentValue, {}, { auth }) {
   if(auth.user && auth.user.id > 0) {
     return await models.Subscription.findAll({
@@ -30,6 +33,7 @@ export async function getByUser(parentValue, {}, { auth }) {
 }
 
 // Get all subscriptions
+// Returns all subscriptions
 export async function getAll() {
   return await models.Subscription.findAll({
     include: [
@@ -40,6 +44,8 @@ export async function getAll() {
 }
 
 // Create subscription
+// Creates and returns the subscription
+// Returns an error message if there is an error
 export async function create(parentValue, { crateId }, { auth }) {
   if(auth.user && auth.user.id > 0) {
     return await models.Subscription.create({
@@ -52,6 +58,8 @@ export async function create(parentValue, { crateId }, { auth }) {
 }
 
 // Delete subscription
+// Deletes the subscription given the id
+// Returns an error message if there is an error
 export async function remove(parentValue, { id }, { auth }) {
   if(auth.user && auth.user.id > 0) {
     return await models.Subscription.destroy({where: {id, userId: auth.user.id}})

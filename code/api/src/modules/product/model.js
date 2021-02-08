@@ -1,6 +1,8 @@
 'use strict'
 
 // Product
+// Products model is defined
+// uses Default DataTypes
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('products', {
     name: {
