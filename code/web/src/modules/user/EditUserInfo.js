@@ -151,6 +151,19 @@ class EditUserInfo extends Component {
   }
 } 
 
-  export default withRouter(connect(null, {
 
-  })(EditUserInfo))
+// Component Properties
+EditUserInfo.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+// Component State
+function profileState(state) {
+  return {
+    user: state.user,
+  };
+}
+
+export default withRouter(connect(profileState, {
+
+})(EditUserInfo))
