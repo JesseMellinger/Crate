@@ -16,6 +16,7 @@ import { white } from "../../ui/common/colors"
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import UserMenu from './common/UserMenu'
+import { set } from 'js-cookie'
 
 // Component
 class EditUserInfo extends Component {
@@ -26,10 +27,10 @@ class EditUserInfo extends Component {
     this.state = {
       isLoading: false,
       user: {
-        id: 0,
+        id: this.props.user.details.id,
         image: '',
-        name: '',
-        email: '',
+        name: this.props.user.details.name,
+        email: this.props.user.details.email,
         address: '',
         description: ''
       }
@@ -106,7 +107,7 @@ class EditUserInfo extends Component {
                   <Input
                     type="text"
                     fullWidth={true}
-                    placeholder="My Email"
+                    placeholder="My email"
                     required="required"
                     name="email"
                     autoComplete="off"
@@ -120,7 +121,7 @@ class EditUserInfo extends Component {
                     placeholder="Description"
                     required="required"
                     name="description"
-                    value={this.state.user.description}
+                    value={this.props.user.details.description}
                     onChange={this.onChange}
                     style={{ marginTop: '1em' }}
                   />
@@ -131,7 +132,7 @@ class EditUserInfo extends Component {
                     placeholder="Shipping Address"
                     required="required"
                     name="address"
-                    value={this.state.user.address}
+                    value={this.props.user.details.address}
                     onChange={this.onChange}
                     style={{ marginTop: '1em' }}
                   />
