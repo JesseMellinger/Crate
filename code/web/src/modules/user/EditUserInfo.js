@@ -15,6 +15,7 @@ import { white } from "../../ui/common/colors"
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
+import UserMenu from './common/UserMenu'
 
 // Component
 class EditUserInfo extends Component {
@@ -58,10 +59,13 @@ class EditUserInfo extends Component {
         <Helmet>
          <title>Edit My Account - Crate</title>
         </Helmet>
+
+        {/* Top menu */}
+        <UserMenu />
         {/* Page Content */}
         <Grid alignCenter={true} style={{ padding: '1em' }}>
           <GridCell style={{ textAlign: 'left' }}>
-            <Link to={userRoutes.profile.path}>
+            <Link to={userRoutes.account.path}>
               <Button><Icon size={1.2}>arrow_back</Icon> Back</Button>
             </Link>
           </GridCell>

@@ -40,5 +40,5 @@ export default {
     path: "/user/account",
     component: UserAccount,
     auth: true,
-  },
+  }
 };
