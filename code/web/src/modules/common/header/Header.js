@@ -62,7 +62,7 @@ const Header = (props) => {
                 </MenuItem>
               )}
               {props.user.details.role === "USER" && (
-                <MenuItem to={user.account.path} section="user">
+                <MenuItem to={user.account.path} section="account">
                   User
                 </MenuItem>
               )}
