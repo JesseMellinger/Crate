@@ -9,6 +9,7 @@ import { Link, withRouter } from "react-router-dom";
 import { H3 } from "../../ui/typography";
 
 // App Imports
+import userRoutes from '../../setup/routes/user'
 import UserMenu from "./common/UserMenu"
 
 const UserAccount = () => {
@@ -78,11 +79,13 @@ const UserAccount = () => {
           <div
             style={{ display: "flex", alignSelf: "flex-start", padding: "1.5em" }}
           >
+            <Link to={userRoutes.edit.path}>
             <img
               src="https://image.flaticon.com/icons/png/512/61/61456.png"
               height="15px"
               width="15px"
             />
+            </Link>
           </div>
         </div>
       </section>
