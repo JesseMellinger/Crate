@@ -52,7 +52,6 @@ const Profile = (props) => (
         </Button>
       </GridCell>
     </Grid>
-    {/* <UserAccount /> */}
   </div>
 );
 
