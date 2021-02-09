@@ -7,6 +7,9 @@ import { Grid, GridCell } from "../../ui/grid";
 import Icon from "../../ui/icon";
 import UserMenu from "./common/UserMenu";
 
+//App Imports
+import Loading from "../common/Loading";
+
 class OrderHistory extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +37,13 @@ class OrderHistory extends Component {
                   <th>Delivery Date</th>
                 </tr>
               </thead>
+              <tbody>
+                <tr>
+                  <td colSpan="5">
+                    <Loading message="loading your orders..." />
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </GridCell>
         </Grid>
