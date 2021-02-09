@@ -5,6 +5,7 @@ import Profile from "../../modules/user/Profile";
 import Subscriptions from "../../modules/user/Subscriptions";
 import EditUserInfo from "../../modules/user/EditUserInfo";
 import UserAccount from "../../modules/user/UserAccount";
+import OrderHistory from "../../modules/user/OrderHistory";
 
 // User routes
 export default {
@@ -40,5 +41,11 @@ export default {
     path: "/user/account",
     component: UserAccount,
     auth: true,
-  }
+  },
+
+  orderHistory: {
+    path: "/user/order-history",
+    component: OrderHistory,
+    auth: true,
+  },
 };

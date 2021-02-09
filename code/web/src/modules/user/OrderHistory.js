@@ -8,8 +8,8 @@ import Icon from "../../ui/icon";
 import UserMenu from "./common/UserMenu";
 
 class OrderHistory extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       availableDate: null,
     };
@@ -21,6 +21,10 @@ class OrderHistory extends Component {
         <Helmet>
           <title>Order History - Crate</title>
         </Helmet>
+        <UserMenu />
+        <Grid>
+          <GridCell alignCenter={true} style={{ padding: "1em" }}></GridCell>
+        </Grid>
       </div>
     );
   }
