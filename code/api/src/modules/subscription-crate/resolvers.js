@@ -6,8 +6,11 @@ export async function get(parentValue, { id }) {
   return await models.SubscriptionCrate.findOne({
     where: { id },
     include: [
-      { model: models.Subscription, as: 'subscription' },
-    ]
+      { model: models.Subscription, as: 'subscription', include: [
+        {model: models.User, as: 'user'},
+        {model: models.Crate, as: 'crate'},
+      ]}
+    ],
   })
 }
 
