@@ -38,10 +38,21 @@ class OrderHistory extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td colSpan="5">
                     <Loading message="loading your orders..." />
                   </td>
+                </tr> */}
+                <tr key={1}>
+                  <td>Order Name</td>
+
+                  <td>4</td>
+
+                  <td>2</td>
+
+                  <td>pending</td>
+
+                  <td>pending</td>
                 </tr>
               </tbody>
             </table>
