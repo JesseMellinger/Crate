@@ -23,7 +23,19 @@ class OrderHistory extends Component {
         </Helmet>
         <UserMenu />
         <Grid>
-          <GridCell alignCenter={true} style={{ padding: "1em" }}></GridCell>
+          <GridCell>
+            <table className="striped">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Items</th>
+                  <th>Items Kept</th>
+                  <th>Available Date</th>
+                  <th>Delivery Date</th>
+                </tr>
+              </thead>
+            </table>
+          </GridCell>
         </Grid>
       </div>
     );
