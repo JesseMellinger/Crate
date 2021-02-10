@@ -5,7 +5,7 @@ import { GraphQLInt, GraphQLString } from 'graphql'
 import SubscriptionCrateType from './types'
 import { create, remove, update } from './resolvers'
 
-// Subscription create
+// SubscriptionCrate create
 export const subscriptionCrateCreate = {
   type: SubscriptionCrateType,
   args: {
@@ -21,7 +21,7 @@ export const subscriptionCrateCreate = {
   resolve: create
 }
 
-// Subscription remove
+// SubscriptionCrate remove
 export const subscriptionCrateRemove = {
   type: SubscriptionCrateType,
   args: {
@@ -33,7 +33,7 @@ export const subscriptionCrateRemove = {
   resolve: remove
 }
 
-// Subscription udpate
+// SubscriptionCrate udpate
 export const subscriptionCrateUpdate = {
   type: SubscriptionCrateType,
   args: {
