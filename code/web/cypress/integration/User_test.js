@@ -53,4 +53,22 @@ describe("Testing Website", () => {
       "https://image.flaticon.com/icons/png/512/61/61456.png"
     );
   });
+
+  it("Should route to the edit user infor page on click of edit button", () => {
+    cy.get("a")
+      .filter(':contains("User")')
+      .click()
+      .url()
+      .should("include", "/user/account");
+
+    cy.get("img:last")
+      .should(
+        "have.attr",
+        "src",
+        "https://image.flaticon.com/icons/png/512/61/61456.png"
+      )
+      .click();
+
+    cy.url("http://localhost:3000/user/edit");
+  });
 });
