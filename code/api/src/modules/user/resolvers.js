@@ -58,6 +58,39 @@ export async function login(parentValue, { email, password }) {
   }
 }
 
+// Update
+export async function update(parentValue, { name, email, bio, shippingAddress, availableDate, profileUri }, { auth }) {
+  if(auth.user && auth.user.id > 0) {
+    let user = auth.user
+    const registeredUser = await models.User.findOne({ where: { email } })
+
+    if (!registeredUser || registeredUser.id === user.id) {
+      // Email has not been taken
+      let id = user.id
+
+      await models.User.update(
+        {
+          name,
+          email,
+          bio,
+          shippingAddress,
+          availableDate,
+          profileUri
+        },
+        {
+          where: { id }
+        }
+      )
+      return await models.User.findOne({ where: { id } })
+    } else {
+      // Email has been take
+      throw new Error(`The email ${ email } is already registered.`)
+    }
+  } else {
+    throw new Error('Operation denied.')
+  }
+}
+
 // Get by ID
 export async function getById(parentValue, { id }) {
   return await models.User.findOne({ where: { id } })
