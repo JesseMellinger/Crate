@@ -71,4 +71,15 @@ describe("Testing Website", () => {
 
     cy.url("http://localhost:3000/user/edit");
   });
+
+  it("Should be able to navigate to order history within the USER account view", () => {
+    cy.get("a")
+      .filter(':contains("User")')
+      .click()
+      .url()
+      .should("include", "/user/account");
+    cy.get("a").filter(':contains("Order History")').click();
+
+    cy.url("http://localhost:3000/user/history");
+  });
 });
