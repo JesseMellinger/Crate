@@ -12,7 +12,8 @@ import { H3 } from "../../ui/typography";
 import userRoutes from '../../setup/routes/user'
 import UserMenu from "./common/UserMenu"
 
-const UserAccount = () => {
+const UserAccount = (props) => {
+  
   return (
     <div>
       {/* SEO */}
@@ -71,10 +72,10 @@ const UserAccount = () => {
               height: "100%",
             }}
           >
-            <H3>The User</H3>
-            <p style={{ color: "#7A7979" }}>sampleemail@gmail.com</p>
-            <p style={{ color: "#7A7979" }}>1234 Sample St. Denver, CO 80231</p>
-            <p>Please tell us about yourself!</p>
+            <H3>{props.user.details.name}</H3>
+            <p style={{ color: "#7A7979" }}>{props.user.details.email}</p>
+            <p style={{ color: "#7A7979" }}>{props.user.details.shippingAddress}</p>
+            <p>{props.user.details.bio}</p>
           </div>
           <div
             style={{ display: "flex", alignSelf: "flex-start", padding: "1.5em" }}
@@ -93,4 +94,10 @@ const UserAccount = () => {
   );
 };
 
-export default withRouter(connect(null, {})(UserAccount));
+function accountState(state) {
+  return {
+    user: state.user,
+  };
+}
+
+export default withRouter(connect(accountState, {})(UserAccount));
