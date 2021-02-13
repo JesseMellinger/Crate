@@ -39,9 +39,9 @@ export async function getByUser(parentValue, { }, { auth }) {
                 { model: models.User, as: 'user' }
               ]
             },
-
           ]
         },
+        { model: models.Product, as: 'product'}
       ]
     })
   } else {
