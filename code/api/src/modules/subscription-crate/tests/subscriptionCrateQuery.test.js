@@ -3,6 +3,7 @@ import express from 'express'; // import express so we can create a mock server
 import graphqlHTTP from 'express-graphql'; // import graphqlHTTP express library
 import schema from '../../../setup/schema'; // import our graphql schema
 import authentication from '../../../setup/authentication'
+import models from '../../../setup/models';
 
 
 // we create describe functions similar to RSpec
@@ -27,13 +28,13 @@ describe('user queries', () => {
     )}
   )
 
-
     it('can successfully query all subscription crates', async () => {
         const response = await request(server)
             .post('/')
             .send({ query: `{ subscriptionCrates { id } }` })
             .expect(200)
 
+        console.log(response.body.data)
         expect(response.body.data.subscriptionCrates.length).toBe(1)
     })
 
@@ -56,7 +57,7 @@ describe('user queries', () => {
         expect(response.body.data.subscriptionCratesBySubscription[0].deliveryDate).toBe("Never")
     })
 
-    it('can successfully query subscription crates by subscription', async () => {
+    it('can successfully query subscription crates by User', async () => {
         let response = await request(server)
         .post('/')
         .send({ query: `{ userLogin(email: "admin@crate.com", password: "123456") { token } }` })
@@ -70,7 +71,8 @@ describe('user queries', () => {
         .send({ query: `{ subscriptionCratesByUser { id deliveryDate } }` })
         .expect(200)
 
-        console.log(secondResponse.body.data.subscriptionCratesByUser)
+        expect(secondResponse.body.data.subscriptionCratesByUser[0].id).toBe(1)
+        expect(secondResponse.body.data.subscriptionCratesByUser[0].deliveryDate).toBe("Never")
 
     })
 })

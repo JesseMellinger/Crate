@@ -41,7 +41,7 @@ export async function getByUser(parentValue, { }, { auth }) {
             },
           ]
         },
-        { model: models.Product, as: 'product'}
+        { model: models.Product, as: 'product' }
       ]
     })
   } else {
@@ -127,6 +127,22 @@ export async function create(parentValue, { subscriptionCrateId, productId }, { 
   } else {
     throw new Error('Access denied.')
   }
+}
+
+// Update
+export async function update(parentValue, { id, returned }, { auth }) {
+  if (auth.user && auth.user.id > 0) {
+
+    await models.CrateProduct.update(
+      {
+        returned
+      },
+      {
+        where: { id }
+      }
+    )
+  }
+  return models.CrateProduct.findOne({ where: { id }})
 }
 
 // Delete CrateProduct

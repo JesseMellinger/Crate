@@ -16,6 +16,7 @@ export async function get(parentValue, { id }) {
 
 // Get SubscriptionCrate by user
 export async function getByUser(parentValue, {}, { auth }) {
+
   if(auth.user && auth.user.id > 0) {
     return await models.SubscriptionCrate.findAll({
       include: [
