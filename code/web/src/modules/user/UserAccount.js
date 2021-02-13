@@ -13,7 +13,7 @@ import userRoutes from '../../setup/routes/user'
 import UserMenu from "./common/UserMenu"
 
 const UserAccount = (props) => {
-  console.log(props.user.details.profileUri)
+
   return (
     <div>
       {/* SEO */}

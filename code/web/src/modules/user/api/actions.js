@@ -12,7 +12,6 @@ export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
 export const UPDATE_USER = 'AUTH/UPDATE_USER'
-
 // Actions
 
 // Set a user after login or using localStorage token
@@ -113,16 +112,15 @@ export function logoutUnsetUserLocalStorageAndCookie() {
 export function updateUser(user) {
   return dispatch => {
     dispatch({
-      type: SET_USER, user
+      type: UPDATE_USER, user
     })
     return axios.post(routeApi, mutation({
       operation: "userUpdate",
       variables: user,
-      fields: ['name']
+      fields: ['user {name, email, role, bio, shippingAddress, profileUri, availableDate}', 'token']
     }))
   }
 }
-
 
 // Get user gender
 export function getGenders() {

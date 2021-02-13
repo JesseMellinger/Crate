@@ -62,7 +62,6 @@ class EditUserInfo extends Component {
     this.props.updateUser(this.state.user)
     this.props.history.push({pathname: userRoutes.account.path,
       state: { fromDashboard: true }})
-    this.props.login(this.state.user)
   }
 
   onUpload = (event) => {
@@ -215,7 +214,8 @@ EditUserInfo.propTypes = {
   updateUser: PropTypes.func.isRequired,
   messageShow: PropTypes.func.isRequired,
   messageHide: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+
 };
 
 // Component State
@@ -230,5 +230,4 @@ export default withRouter(connect(profileState, {
   updateUser,
   messageShow,
   messageHide,
-  login
 })(EditUserInfo))
