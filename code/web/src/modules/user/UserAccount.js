@@ -13,7 +13,7 @@ import userRoutes from '../../setup/routes/user'
 import UserMenu from "./common/UserMenu"
 
 const UserAccount = (props) => {
-  
+  console.log(props.user.details.profileUri)
   return (
     <div>
       {/* SEO */}
@@ -60,7 +60,7 @@ const UserAccount = (props) => {
             }}
           >
             <img
-              src="https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg"
+              src={props.user.details.profileUri}
               height="100%"
             />
           </div>

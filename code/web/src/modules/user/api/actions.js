@@ -11,6 +11,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const UPDATE_USER = 'AUTH/UPDATE_USER'
 
 // Actions
 
@@ -36,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {name, email, role, bio, shippingAddress, profileUri, availableDate}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -107,6 +108,21 @@ export function logoutUnsetUserLocalStorageAndCookie() {
   // Remove cookie
   cookie.remove('auth')
 }
+
+// Update a user
+export function updateUser(user) {
+  return dispatch => {
+    dispatch({
+      type: SET_USER, user
+    })
+    return axios.post(routeApi, mutation({
+      operation: "userUpdate",
+      variables: user,
+      fields: ['name']
+    }))
+  }
+}
+
 
 // Get user gender
 export function getGenders() {
