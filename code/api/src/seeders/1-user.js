@@ -27,7 +27,7 @@ module.exports = {
         bio: "Sample data",
         shippingAddress: "Sample Address",
         availableDate: "Someday",
-        profileUri: "Sample Uri",
+        profileUri: "https://images.pexels.com/photos/2169434/pexels-photo-2169434.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         createdAt: new Date(),
         updatedAt: new Date()
       }
