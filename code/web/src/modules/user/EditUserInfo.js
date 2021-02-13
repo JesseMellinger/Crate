@@ -13,10 +13,16 @@ import H4 from '../../ui/typography/H4'
 import { Input, Textarea } from '../../ui/input'
 import { white } from "../../ui/common/colors"
 
+
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import UserMenu from './common/UserMenu'
-import { set } from 'js-cookie'
+import { updateUser as updateUser } from './api/actions'
+import { login } from './api/actions'
+import { renderIf, slug } from '../../setup/helpers'
+import { routeImage } from "../../setup/routes"
+import { upload, messageShow, messageHide } from '../common/api/actions'
+
 
 // Component
 class EditUserInfo extends Component {
@@ -27,12 +33,12 @@ class EditUserInfo extends Component {
     this.state = {
       isLoading: false,
       user: {
-        id: this.props.user.details.id,
-        image: '',
-        name: this.props.user.details.name,
-        email: this.props.user.details.email,
-        address: '',
-        description: ''
+        profileUri: props.user.details.profileUri,
+        name: props.user.details.name,
+        email: props.user.details.email,
+        shippingAddress: props.user.details.shippingAddress,
+        availableDate: props.user.details.availableDate,
+        bio: props.user.details.bio
       }
     }
   }
@@ -52,7 +58,53 @@ class EditUserInfo extends Component {
     this.setState({
       isLoading: true
     })
+
+    this.props.updateUser(this.state.user)
+    this.props.history.push({pathname: userRoutes.account.path,
+      state: { fromDashboard: true }})
+    this.props.login(this.state.user)
   }
+
+  onUpload = (event) => {
+    this.props.messageShow('Uploading file, please wait...')
+    this.setState({
+      isLoading: true
+    })
+
+    let data = new FormData()
+    data.append('file', event.target.files[0])
+  
+    // Upload image
+    this.props.upload(data)
+      .then(response => {
+        if (response.status === 200) {
+          this.props.messageShow('File uploaded successfully.')
+
+         let user = this.state.user
+          user.profileUri = `${routeImage}/images/uploads/${ response.data.file }`
+
+          this.setState({
+            user
+          })
+        } else {
+          this.props.messageShow('Please try again.')
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
+
+      })
+      .then(() => {
+        this.setState({
+          isLoading: false
+        })
+
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
+  }
+
 
   render() {
     return (
@@ -85,12 +137,16 @@ class EditUserInfo extends Component {
                   <div style={{ marginTop: '1em' }}>
                     <input
                       type="file"
-                      // onChange={this.onUpload}
+                      onChange={this.onUpload}
                       required={this.state.user.id === 0}
                     />
                   </div>
-                  {/* Uploaded image */}
-    
+                 {/* Uploaded image */}
+                 {renderIf(routeImage + this.state.user.profileUri !== '', () => (
+      
+                    <img src={this.state.user.profileUri} alt="Profile Image"
+                         style={{ width: 200, marginTop: '1em' }}/>
+                  ))}
                   {/* Name */}
                   <Input
                     type="text"
@@ -120,8 +176,8 @@ class EditUserInfo extends Component {
                     fullWidth={true}
                     placeholder="Description"
                     required="required"
-                    name="description"
-                    value={this.props.user.details.description}
+                    name="bio"
+                    value={this.state.user.bio}
                     onChange={this.onChange}
                     style={{ marginTop: '1em' }}
                   />
@@ -131,8 +187,8 @@ class EditUserInfo extends Component {
                     fullWidth={true}
                     placeholder="Shipping Address"
                     required="required"
-                    name="address"
-                    value={this.props.user.details.address}
+                    name="shippingAddress"
+                    value={this.state.user.shippingAddress}
                     onChange={this.onChange}
                     style={{ marginTop: '1em' }}
                   />
@@ -156,6 +212,10 @@ class EditUserInfo extends Component {
 // Component Properties
 EditUserInfo.propTypes = {
   user: PropTypes.object.isRequired,
+  updateUser: PropTypes.func.isRequired,
+  messageShow: PropTypes.func.isRequired,
+  messageHide: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 // Component State
@@ -166,5 +226,9 @@ function profileState(state) {
 }
 
 export default withRouter(connect(profileState, {
-
+  upload,
+  updateUser,
+  messageShow,
+  messageHide,
+  login
 })(EditUserInfo))
