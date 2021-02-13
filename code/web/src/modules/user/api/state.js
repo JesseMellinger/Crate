@@ -47,7 +47,7 @@ export default (state = userInitialState, action) => {
       return {
         ...state,
         details: action.user,
-      }  
+      }
 
     default:
       return state
