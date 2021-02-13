@@ -11,15 +11,18 @@ export const subscriptionCrates = {
   resolve: getAll
 }
 
-// Subscriptions by user
+// SubscriptionCrates by user
 export const subscriptionCratesByUser = {
   type: new GraphQLList(SubscriptionCrateType),
   resolve: getByUser
 }
 
-// Subscriptions by user
+// SubscriptionCrates by subscription
 export const subscriptionCratesBySubscription = {
   type: new GraphQLList(SubscriptionCrateType),
+  args: {
+    subscriptionId: { type: GraphQLInt }
+  },
   resolve: getBySubscription
 }
 

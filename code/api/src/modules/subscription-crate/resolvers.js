@@ -16,18 +16,39 @@ export async function get(parentValue, { id }) {
 
 // Get SubscriptionCrate by user
 export async function getByUser(parentValue, {}, { auth }) {
+
   if(auth.user && auth.user.id > 0) {
     return await models.SubscriptionCrate.findAll({
-      where: {
-        userId: auth.user.id
-      },
       include: [
-        {model: models.Subscription, as: 'subscription'},
+        {
+          model: models.Subscription, as: 'subscription',
+          where: {
+            userId: auth.user.id
+          },
+        },
       ]
     })
   } else {
     throw new Error('Please login to view your subscriptions.')
   }
+}
+
+// Get SubscriptionCrate by subscription
+export async function getBySubscription(parentValue, { subscriptionId }) {
+  return await models.SubscriptionCrate.findAll({
+    where: {
+      subscriptionId: subscriptionId
+    },
+    include: [
+      {
+        model: models.Subscription, as: 'subscription',
+        include: [
+          { model: models.Crate, as: 'crate' },
+          { model: models.User, as: 'user' }
+        ]
+      }
+    ]
+  })
 }
 
 // Get all SubscriptionCrates
