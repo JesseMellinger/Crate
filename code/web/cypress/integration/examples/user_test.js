@@ -41,8 +41,6 @@ describe("Testing Website", () => {
         "https://image.flaticon.com/icons/png/512/61/61456.png"
       );
 
-    cy.get("p").contains("Please tell us about yourself!");
-
     cy.get("img:last").should(
       "have.attr",
       "src",
