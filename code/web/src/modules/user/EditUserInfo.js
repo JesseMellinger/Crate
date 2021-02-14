@@ -1,35 +1,32 @@
 // Imports
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
-import { Link, withRouter } from 'react-router-dom'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
+import { Link, withRouter } from "react-router-dom";
 
 // UI Imports
-import { Grid, GridCell } from '../../ui/grid'
-import Button from '../../ui/button'
-import Icon from '../../ui/icon'
-import H4 from '../../ui/typography/H4'
-import { Input, Textarea } from '../../ui/input'
-import { white } from "../../ui/common/colors"
-
+import { Grid, GridCell } from "../../ui/grid";
+import Button from "../../ui/button";
+import Icon from "../../ui/icon";
+import H4 from "../../ui/typography/H4";
+import { Input, Textarea } from "../../ui/input";
+import { white } from "../../ui/common/colors";
 
 // App Imports
-import userRoutes from '../../setup/routes/user'
-import UserMenu from './common/UserMenu'
-import { updateUser as updateUser } from './api/actions'
-import { login } from './api/actions'
-import { renderIf, slug } from '../../setup/helpers'
-import { routeImage } from "../../setup/routes"
-import { upload, messageShow, messageHide } from '../common/api/actions'
-
+import userRoutes from "../../setup/routes/user";
+import UserMenu from "./common/UserMenu";
+import { updateUser as updateUser } from "./api/actions";
+import { login } from "./api/actions";
+import { renderIf, slug } from "../../setup/helpers";
+import { routeImage } from "../../setup/routes";
+import { upload, messageShow, messageHide } from "../common/api/actions";
 
 // Component
 class EditUserInfo extends Component {
-
   constructor(props) {
-    super(props)
-    
+    super(props);
+
     this.state = {
       isLoading: false,
       user: {
@@ -38,175 +35,196 @@ class EditUserInfo extends Component {
         email: props.user.details.email,
         shippingAddress: props.user.details.shippingAddress,
         availableDate: props.user.details.availableDate,
-        bio: props.user.details.bio
-      }
-    }
+        bio: props.user.details.bio,
+      },
+    };
   }
 
   onChange = (event) => {
-    let user = this.state.user
-    user[event.target.name] = event.target.value
+    let user = this.state.user;
+    user[event.target.name] = event.target.value;
 
     this.setState({
-      user
-    })
-  }
+      user,
+    });
+  };
 
   onSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     this.setState({
-      isLoading: true
-    })
+      isLoading: true,
+    });
 
-    this.props.updateUser(this.state.user)
-    this.props.history.push({pathname: userRoutes.account.path,
-      state: { fromDashboard: true }})
-  }
+    this.props.updateUser(this.state.user);
+    this.props.history.push({
+      pathname: userRoutes.account.path,
+      state: { fromDashboard: true },
+    });
+  };
 
   onUpload = (event) => {
-    this.props.messageShow('Uploading file, please wait...')
+    this.props.messageShow("Uploading file, please wait...");
     this.setState({
-      isLoading: true
-    })
+      isLoading: true,
+    });
 
-    let data = new FormData()
-    data.append('file', event.target.files[0])
-  
+    let data = new FormData();
+    data.append("file", event.target.files[0]);
+
     // Upload image
-    this.props.upload(data)
-      .then(response => {
+    this.props
+      .upload(data)
+      .then((response) => {
         if (response.status === 200) {
-          this.props.messageShow('File uploaded successfully.')
+          this.props.messageShow("File uploaded successfully.");
 
-         let user = this.state.user
-          user.profileUri = `${routeImage}/images/uploads/${ response.data.file }`
+          let user = this.state.user;
+          user.profileUri = `${routeImage}/images/uploads/${response.data.file}`;
 
           this.setState({
-            user
-          })
+            user,
+          });
         } else {
-          this.props.messageShow('Please try again.')
+          this.props.messageShow("Please try again.");
         }
       })
-      .catch(error => {
-        this.props.messageShow('There was some error. Please try again.')
-
+      .catch((error) => {
+        this.props.messageShow("There was some error. Please try again.");
       })
       .then(() => {
         this.setState({
-          isLoading: false
-        })
+          isLoading: false,
+        });
 
         window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
-      })
-  }
-
+          this.props.messageHide();
+        }, 5000);
+      });
+  };
 
   render() {
     return (
       <div>
         <Helmet>
-         <title>Edit My Account - Crate</title>
+          <title>Edit My Account - Crate</title>
         </Helmet>
 
         {/* Top menu */}
         <UserMenu />
         {/* Page Content */}
-        <Grid alignCenter={true} style={{ padding: '1em' }}>
-          <GridCell style={{ textAlign: 'left' }}>
+        <Grid alignCenter={true} style={{ padding: "1em" }}>
+          <GridCell style={{ textAlign: "left" }}>
             <Link to={userRoutes.account.path}>
-              <Button><Icon size={1.2}>arrow_back</Icon> Back</Button>
+              <Button>
+                <Icon size={1.2}>arrow_back</Icon> Back
+              </Button>
             </Link>
           </GridCell>
         </Grid>
 
-        <Grid alignCenter={true} style={{ padding: '1em' }}>
+        <Grid alignCenter={true} style={{ padding: "1em" }}>
           <GridCell>
-            <H4 font="secondary" style={{ marginBottom: '1em', textAlign: 'center' }}>
+            <H4
+              font="secondary"
+              style={{ marginBottom: "1em", textAlign: "center" }}
+              data-cy="edit-info-title">
               Edit My Account
             </H4>
 
             {/* Form */}
             <form onSubmit={this.onSubmit}>
-                <div style={{ width: '25em', margin: '0 auto' }}>
-                  {/* Upload File */}
-                  <div style={{ marginTop: '1em' }}>
-                    <input
-                      type="file"
-                      onChange={this.onUpload}
-                      required={this.state.user.id === 0}
+              <div style={{ width: "25em", margin: "0 auto" }}>
+                {/* Upload File */}
+                <div style={{ marginTop: "1em" }}>
+                  <input
+                    type="file"
+                    onChange={this.onUpload}
+                    required={this.state.user.id === 0}
+                  />
+                </div>
+                {/* Uploaded image */}
+                {renderIf(
+                  routeImage + this.state.user.profileUri !== "",
+                  () => (
+                    <img
+                      src={this.state.user.profileUri}
+                      alt="Profile Image"
+                      style={{ width: 200, marginTop: "1em" }}
                     />
-                  </div>
-                 {/* Uploaded image */}
-                 {renderIf(routeImage + this.state.user.profileUri !== '', () => (
-      
-                    <img src={this.state.user.profileUri} alt="Profile Image"
-                         style={{ width: 200, marginTop: '1em' }}/>
-                  ))}
-                  {/* Name */}
-                  <Input
-                    type="text"
-                    fullWidth={true}
-                    placeholder="My Name"
-                    required="required"
-                    name="name"
-                    autoComplete="off"
-                    value={this.state.user.name}
-                    onChange={this.onChange}
-                  />
+                  )
+                )}
+                {/* Name */}
+                <Input
+                  type="text"
+                  fullWidth={true}
+                  placeholder="My Name"
+                  required="required"
+                  name="name"
+                  autoComplete="off"
+                  value={this.state.user.name}
+                  onChange={this.onChange}
+                  data-cy="name-input"
+                />
 
-                  {/* Email */}
-                  <Input
-                    type="text"
-                    fullWidth={true}
-                    placeholder="My email"
-                    required="required"
-                    name="email"
-                    autoComplete="off"
-                    value={this.state.user.email}
-                    onChange={this.onChange}
-                  />
+                {/* Email */}
+                <Input
+                  type="text"
+                  fullWidth={true}
+                  placeholder="My email"
+                  required="required"
+                  name="email"
+                  autoComplete="off"
+                  value={this.state.user.email}
+                  onChange={this.onChange}
+                  data-cy="email-input"
+                />
 
-                  {/* Description */}
-                  <Textarea
-                    fullWidth={true}
-                    placeholder="Description"
-                    required="required"
-                    name="bio"
-                    value={this.state.user.bio}
-                    onChange={this.onChange}
-                    style={{ marginTop: '1em' }}
-                  />
+                {/* Descriptio */}
+                <Textarea
+                  fullWidth={true}
+                  placeholder="Description"
+                  required="required"
+                  name="bio"
+                  value={this.state.user.bio}
+                  onChange={this.onChange}
+                  style={{ marginTop: "1em" }}
+                  data-cy="bio-text-area"
+                />
 
-                  {/* Shipping Address */}
-                  <Textarea
-                    fullWidth={true}
-                    placeholder="Shipping Address"
-                    required="required"
-                    name="shippingAddress"
-                    value={this.state.user.shippingAddress}
-                    onChange={this.onChange}
-                    style={{ marginTop: '1em' }}
-                  />
-                </div>
+                {/* Shipping Address */}
+                <Textarea
+                  fullWidth={true}
+                  placeholder="Shipping Address"
+                  required="required"
+                  name="shippingAddress"
+                  value={this.state.user.shippingAddress}
+                  onChange={this.onChange}
+                  style={{ marginTop: "1em" }}
+                  data-cy="shipping-address-text"
+                />
+              </div>
 
-                {/* Form submit */}
-                <div style={{ marginTop: '2em', textAlign: 'center' }}>
-                  <Button type="submit" theme="secondary" disabled={this.state.isLoading}>
-                    <Icon size={1.2} style={{ color: white }}>check</Icon> Save
-                  </Button>
-                </div>
-              </form>
+              {/* Form submit */}
+              <div style={{ marginTop: "2em", textAlign: "center" }}>
+                <Button
+                  type="submit"
+                  theme="secondary"
+                  disabled={this.state.isLoading}
+                  data-cy="submit-button">
+                  <Icon size={1.2} style={{ color: white }}>
+                    check
+                  </Icon>{" "}
+                  Save
+                </Button>
+              </div>
+            </form>
           </GridCell>
-        </Grid>          
+        </Grid>
       </div>
-    )
+    );
   }
-} 
-
+}
 
 // Component Properties
 EditUserInfo.propTypes = {
@@ -215,7 +233,6 @@ EditUserInfo.propTypes = {
   messageShow: PropTypes.func.isRequired,
   messageHide: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
-
 };
 
 // Component State
@@ -225,9 +242,11 @@ function profileState(state) {
   };
 }
 
-export default withRouter(connect(profileState, {
-  upload,
-  updateUser,
-  messageShow,
-  messageHide,
-})(EditUserInfo))
+export default withRouter(
+  connect(profileState, {
+    upload,
+    updateUser,
+    messageShow,
+    messageHide,
+  })(EditUserInfo)
+);
